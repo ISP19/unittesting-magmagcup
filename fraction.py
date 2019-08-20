@@ -1,3 +1,5 @@
+from math import gcd,copysign
+
 class Fraction:
     """A fraction with a numerator and denominator and arithmetic operations.
 
@@ -12,21 +14,48 @@ class Fraction:
         """Initialize a new fraction with the given numerator
            and denominator (default 1).
         """
-        #TODO write this (and remove this TODO comment)
-        pass
+        self.numerator = int((numerator/gcd(numerator,denominator))
+                             / copysign(1,denominator))
+        self.denominator = int((denominator/gcd(numerator,denominator))
+                               / copysign(1,denominator))
 
-    #TODO Write the __add__ method, and remove this TODO comment.
     def __add__(self, frac):
         """Return the sum of two fractions as a new fraction.
            Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
         """
+        numerator = (frac.denominator * self.numerator) + \
+                    (self.denominator * frac.numerator)
+        denominator = (self.denominator * frac.denominator)
+        return Fraction(numerator,denominator)
+
+    def __mul__(self, frac):
+        """
+        Return a multiple of 2 fraction.
+        :param frac: a fraction
+        :return: a new fraction which is the product
+        of 2 fraction
+        """
+        numerator = self.numerator * frac.numerator
+        denominator = self.denominator * frac.denominator
+        return Fraction(numerator,denominator)
+
+    def __str__(self):
+        if self.denominator == 1:
+            return str(int(self.numerator/self.denominator))
+        return f'{self.numerator}/{self.denominator}'
+
+
+    def __sub__(self, frac):
+        # __sub__ for f-g
         pass
 
-    #TODO write __mul__ and __str__.  Verify __eq__ works with your code.
-    #Optional have fun and overload other operators such as 
-    # __sub__ for f-g
-    # __gt__  for f > g
-    # __neg__ for -f (negation)
+    def __gt__(self, frac):
+        # __gt__  for f > g
+        pass
+
+    def __neq__(self, frac):
+        # __neg__ for -f (negation)
+        pass
 
     def __eq__(self, frac):
         """Two fractions are equal if they have the same value.
