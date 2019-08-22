@@ -18,10 +18,10 @@ class Fraction:
         if greatest_common_div == 0:
             greatest_common_div = 1
         self.numerator = int((numerator/greatest_common_div)
-                             / copysign(1,denominator))
+                             / copysign(1, denominator))
         self.denominator = int((denominator/greatest_common_div)
-                               / copysign(1,denominator))
-        self.sign = copysign(1, copysign(1, numerator))
+                               / copysign(1, denominator))
+        self.sign = copysign(1, self.numerator)
         self.undefined_as_number_type = None
         if self.denominator == 0:
             if self.numerator == 0:
@@ -29,15 +29,15 @@ class Fraction:
                 # as 'nan' is that nan is not equal to nan.
                 self.undefined_as_number_type = 'nan'
             else:
-                self.sign = inf*copysign(1, self.numerator)
-
+                self.numerator = 1 * self.sign
+                self.undefined_as_number_type = inf * self.sign
 
     def __add__(self, frac):
         """Return the sum of two fractions as a new fraction.
            Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
         """
-        numerator = (frac.denominator * self.numerator) + \
-                    (self.denominator * frac.numerator)
+        numerator = int((frac.denominator * self.numerator) + \
+                    (self.denominator * frac.numerator))
         denominator = (self.denominator * frac.denominator)
         return Fraction(numerator, denominator)
 
@@ -54,13 +54,13 @@ class Fraction:
 
     def __str__(self):
         if self.denominator == 1:
-            return int(self.numerator/self.denominator)
+            return str(int(self.numerator/self.denominator))
         return f'{self.numerator}/{self.denominator}'
 
     def __sub__(self, frac):
         # __sub__ for f-g
-        numerator = (frac.denominator * self.numerator) - \
-                    (self.denominator * frac.numerator)
+        numerator = int((frac.denominator * self.numerator) - \
+                    (self.denominator * frac.numerator))
         denominator = (self.denominator * frac.denominator)
         return Fraction(numerator, denominator)
 

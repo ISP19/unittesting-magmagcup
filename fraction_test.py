@@ -62,8 +62,8 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(3, 4), Fraction(1, 12) + Fraction(2, 3))
         self.assertEqual(Fraction(1, 3), Fraction(2, 3) + Fraction(-1, 3))
         self.assertEqual(Fraction(0, 1), Fraction(1, 1) + Fraction(-1, 1))
-        self.assertEqual(math.inf, Fraction(1, 0) + Fraction(4, 3))
-        self.assertEqual(-math.inf, Fraction(-1, 0) + Fraction(4, 3))
+        self.assertEqual(Fraction(1, 0), Fraction(1, 0) + Fraction(4, 3))
+        self.assertEqual(Fraction(-1, 0), Fraction(-1, 0) + Fraction(4, 3))
         self.assertEqual(Fraction(0, 9), Fraction(3, 9) + Fraction(-3, 9))
         self.assertEqual(Fraction(0, 0), Fraction(1, 0) + Fraction(-1, 0))
 
