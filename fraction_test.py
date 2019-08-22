@@ -8,6 +8,11 @@ class FractionTest(unittest.TestCase):
     """Test the methods and constructor of the Fraction class. """
 
     def test_str(self):
+        """
+        Test Fraction string.
+        :return: text in nominator/denominator format. (if denominator = 1 text only display nominator
+        same goes to nominator equal to 0)
+        """
         f = Fraction(3, -1)
         self.assertEqual("-3", f.__str__())
         f = Fraction(0, 5)
@@ -27,6 +32,10 @@ class FractionTest(unittest.TestCase):
         self.assertEqual("99", f.__str__())
 
     def test_init(self):
+        """
+
+        :return: -
+        """
         f = Fraction(3,5)
         g = Fraction(2,-5)
         self.assertEqual(f.denominator,g.denominator)

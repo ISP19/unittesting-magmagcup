@@ -5,8 +5,6 @@ by Bill Gates.
 
 ## Test Cases for unique
 
-Write a table describing your test cases.
-
 | Test case              |  Expected Result    |
 |------------------------|---------------------|
 | empty list             |  empty list         |
@@ -19,10 +17,15 @@ Write a table describing your test cases.
 
 
 ## Test Cases for Fraction
+##
+
+##Initialize
 | Test case              |  Expected Result    |
 |------------------------|---------------------|
-| multiply               |  empty list         |
+| str                    |             |
 | add                    |  list with 1 item   |
 | eq                     |  list with 1 item   |
 | init | 2 item list, items in same order  |
 | str  |  what result?       |
+
+##String
