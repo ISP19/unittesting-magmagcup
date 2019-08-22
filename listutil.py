@@ -18,11 +18,9 @@ def unique(list):
     # Incase of list in list
     if not isinstance(list, type([])):
         raise TypeError
-    list_to_tuple = [tuple(element) if isinstance(element, type([]))
-                     else element for element in list]
-    tuple_to_set = set(list_to_tuple)
+    list_to_set = set([tuple(element) if isinstance(element, type([])) else element for element in list])
     set_to_tuple = [[*element] if type(element) == tuple
-                    else element for element in tuple_to_set]
+                    else element for element in list_to_set]
     return set_to_tuple
 
 if __name__ == "__main__":

@@ -21,20 +21,17 @@ class Fraction:
                              / copysign(1,denominator))
         self.denominator = int((denominator/greatest_common_div)
                                / copysign(1,denominator))
+        self.sign = copysign(1,copysign(1,numerator))
 
 
     def __add__(self, frac):
         """Return the sum of two fractions as a new fraction.
            Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
         """
-        if self.denominator == 0:
-            return inf * (copysign(1, self.numerator))
-        elif frac.denominator == 0:
-            return inf * (copysign(1, frac.numerator))
         numerator = (frac.denominator * self.numerator) + \
                     (self.denominator * frac.numerator)
         denominator = (self.denominator * frac.denominator)
-        return Fraction(numerator,denominator)
+        return Fraction(numerator, denominator)
 
     def __mul__(self, frac):
         """
@@ -49,13 +46,16 @@ class Fraction:
 
     def __str__(self):
         if self.denominator == 1:
-            return str(int(self.numerator/self.denominator))
+            return int(self.numerator/self.denominator)
         return f'{self.numerator}/{self.denominator}'
 
 
     def __sub__(self, frac):
         # __sub__ for f-g
-        pass
+        numerator = (frac.denominator * self.numerator) - \
+                    (self.denominator * frac.numerator)
+        denominator = (self.denominator * frac.denominator)
+        return Fraction(numerator, denominator)
 
     def __gt__(self, frac):
         # __gt__  for f > g

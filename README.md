@@ -1,6 +1,6 @@
 ## Unit Testing Assignment
 
-by Bill Gates.
+by Sirawich Direkwattanachai.
 
 
 ## Test Cases for unique
@@ -19,13 +19,16 @@ by Bill Gates.
 ## Test Cases for Fraction
 ##
 
-##Initialize
+##Constructor
 | Test case              |  Expected Result    |
 |------------------------|---------------------|
-| str                    |             |
-| add                    |  list with 1 item   |
-| eq                     |  list with 1 item   |
-| init | 2 item list, items in same order  |
-| str  |  what result?       |
+| Input integer a as nominator |nominator = a,denominator = 1             |
+| int a as nominator and int b as denominator  |nominator = a,denominator = b   |
+|Only input denominator | 
+| Use wrong input type  |  TypeError |
 
 ##String
+| Test case              |   Expected Result    |
+|------------------------|----------------------|
+|                                         |
+##
