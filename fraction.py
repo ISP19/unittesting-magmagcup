@@ -1,4 +1,4 @@
-from math import gcd,copysign
+from math import gcd,copysign,inf
 
 class Fraction:
     """A fraction with a numerator and denominator and arithmetic operations.
@@ -14,15 +14,23 @@ class Fraction:
         """Initialize a new fraction with the given numerator
            and denominator (default 1).
         """
-        self.numerator = int((numerator/gcd(numerator,denominator))
+        greatest_common_div = gcd(numerator,denominator)
+        if greatest_common_div == 0:
+            greatest_common_div = 1
+        self.numerator = int((numerator/greatest_common_div)
                              / copysign(1,denominator))
-        self.denominator = int((denominator/gcd(numerator,denominator))
+        self.denominator = int((denominator/greatest_common_div)
                                / copysign(1,denominator))
+
 
     def __add__(self, frac):
         """Return the sum of two fractions as a new fraction.
            Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
         """
+        if self.denominator == 0:
+            return inf * (copysign(1, self.numerator))
+        elif frac.denominator == 0:
+            return inf * (copysign(1, frac.numerator))
         numerator = (frac.denominator * self.numerator) + \
                     (self.denominator * frac.numerator)
         denominator = (self.denominator * frac.denominator)

@@ -15,7 +15,15 @@ def unique(list):
     >>> unique([])
     []
     """
-    pass   # remove this and write the actual code
+    # Incase of list in list
+    if not isinstance(list, type([])):
+        raise TypeError
+    list_to_tuple = [tuple(element) if isinstance(element, type([]))
+                     else element for element in list]
+    tuple_to_set = set(list_to_tuple)
+    set_to_tuple = [[*element] if type(element) == tuple
+                    else element for element in tuple_to_set]
+    return set_to_tuple
 
 if __name__ == "__main__":
     """Run the doctests in all methods."""
