@@ -31,5 +31,5 @@ Test case for __init__,__add__,__mul__,__str__,__sub__,__gt__,__neq__,__eq__
 ##String(str)
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
-|                                         |
+|                                               |
 ##
