@@ -18,20 +18,65 @@ by Sirawich Direkwattanachai.
 
 ## Test Cases for Fraction
 
-Test case for __init__,__add__,__mul__,__str__,__sub__,__gt__,__neq__,__eq__
+Test case for __init__,__string__,__add__,__mul__,__sub__,__gt__,__neq__,__eq__
 
-##Constructor(init)
+## Constructor(init)
 
 | Test case              |  Expected Result    |
 |------------------------|---------------------|
-| Input integer a as nominator |nominator = a,denominator = 1             |
-| int a as nominator and int b as denominator  |nominator = a,denominator = b  |
-|Only input denominator |  TypeError |
+| Positive int(> 0) as nominator |nominator = int,denominator = 1,spacial value = None             |
+| Positive int(> 0) as nominator, Positive int(> 0) as denominator  |nominator = int,denominator = int,spacial value = None|
+| Negative int(< 0) as nominator, Positive int(> 0) as denominator  |nominator = -int,denominator = int,spacial value = None|
+| Positive int(> 0) as nominator, Negative int(< 0) as denominator  |nominator = -int,denominator = int,spacial value = None|
+| Negative int(< 0) as nominator, Negative int(< 0) as denominator  |nominator = int,denominator = int,spacial value = None|
+|Only input a denominator |  TypeError |
 |Wrong argument type  |  TypeError |
+|0 as denominator (positive nominator) | nominator = 1, denominator = 0,special value = inf|
+|0 as denominator (negative nominator) | nominator = -1, denominator = 0,special value = -inf|
+|0 as nominator  | nominator = 0, denominator = 1,special value = None|
+|0 as nominator and denominator | nominator = 0, denominator = 0, special value = 'nan'
+|Positive int as nominator, Negative 0 | nominator = 1, denominator = 0, special value = inf 
+|Positive int as nominator, Positive 0 | nominator = 1, denominator = 0, special value = inf 
 
-##String(str)
+## Basetext (*__str__*)
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
-|                        |                      |
-##
+|Fraction with nominator > 0 (Denominator > 0)|nominator/denominator
+|Fraction with nominator > 0  (Denominator = 1)| nominator
+|Fraction with nominator < 0  (Denominator > 0)   | minus nominator/denominator                |
+|Fraction with nominator < 0  (Denominator = 1 )  |minus nominator|
+|Fraction with nominator < 0 (Denominator = 0) | -1/0
+|Fraction with nominator > 0 (Denominator = 0) | 1/0
+|Nominator and Denominator = 0 | 0/0
+|Nominator = 0 and Denominator != 0| 0
+
+## Addition Operator(*__add__*)
+
+| Test case              |   Expected Result    |
+|------------------------|----------------------|
+
+## Multiplication Operator(*__mul__*)
+
+| Test case              |   Expected Result    |
+|------------------------|----------------------|
+
+## Subtraction Operator(*__sub__*)
+
+| Test case              |   Expected Result    |
+|------------------------|----------------------|
+
+## Greater than (*__gt__*)
+
+| Test case              |   Expected Result    |
+|------------------------|----------------------|
+
+## Negation Operator (*__neg__*)
+
+| Test case              |   Expected Result    |
+|------------------------|----------------------|
+
+## Equality (*__eq__*)
+
+| Test case              |   Expected Result    |
+|------------------------|----------------------|

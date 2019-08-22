@@ -16,12 +16,18 @@ class FractionTest(unittest.TestCase):
         g = Fraction(2, -5)
         self.assertEqual(f.denominator, g.denominator)
         self.assertNotEqual(f.numerator, g.numerator)
-        self.assertEqual(Fraction(1, 0), Fraction(1, -0))  # 0 and -0 is the same
-        # number according to python math library
+        # 0 and -0 is the same according to python math library
+        self.assertEqual(Fraction(1, 0), Fraction(1, -0))
         with self.assertRaises(TypeError):
             Fraction('a', 'b')
         with self.assertRaises(TypeError):
             Fraction(denominator=2)
+        with self.assertRaises(TypeError):
+            Fraction(3.9, 23.4)
+        self.assertEqual(Fraction(1, 0), Fraction(5, 0))
+        self.assertEqual(Fraction(0, 1), Fraction(0, 4))
+        self.assertEqual(Fraction(-1, 0), Fraction(-3, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(-0, -0))
 
     def test_str(self):
         """
@@ -45,6 +51,14 @@ class FractionTest(unittest.TestCase):
         self.assertEqual("-3/5", f.__str__())
         f = Fraction(99)
         self.assertEqual("99", f.__str__())
+        f = Fraction(3, 1)
+        self.assertEqual("3", f.__str__())
+        f = Fraction(0, 0)
+        self.assertEqual("0/0", f.__str__())
+        f = Fraction(1, 0)
+        self.assertEqual("1/0", f.__str__())
+        f = Fraction(-1, 0)
+        self.assertEqual("-1/0", f.__str__())
 
     def test_multiply(self):
         """

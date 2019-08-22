@@ -1,4 +1,5 @@
-from math import gcd,copysign,inf
+from math import gcd, copysign, inf
+
 
 class Fraction:
     """A fraction with a numerator and denominator and arithmetic operations.
@@ -14,6 +15,8 @@ class Fraction:
         """Initialize a new fraction with the given numerator
            and denominator (default 1).
         """
+        if not isinstance(numerator,int) and not isinstance(denominator,int):
+            raise TypeError
         greatest_common_div = gcd(numerator,denominator)
         if greatest_common_div == 0:
             greatest_common_div = 1
@@ -22,24 +25,34 @@ class Fraction:
         self.denominator = int((denominator/greatest_common_div)
                                / copysign(1, denominator))
         self.sign = copysign(1, self.numerator)
-        self.undefined_as_number_type = None
+        self.special_value = None
         if self.denominator == 0:
             if self.numerator == 0:
                 # The reason why I decide to defined nan(Not A Number)
                 # as 'nan' is that nan is not equal to nan.
-                self.undefined_as_number_type = 'nan'
+                self.special_value = 'nan'
             else:
-                self.numerator = 1 * self.sign
-                self.undefined_as_number_type = inf * self.sign
+                self.numerator = int(1 * self.sign)
+                self.special_value = inf * self.sign
 
     def __add__(self, frac):
         """Return the sum of two fractions as a new fraction.
            Use the standard formula  a/b + c/d = (ad+bc)/(b*d)
         """
-        numerator = int((frac.denominator * self.numerator) + \
-                    (self.denominator * frac.numerator))
-        denominator = (self.denominator * frac.denominator)
-        return Fraction(numerator, denominator)
+        if self.special_value is None and frac.special_value is None:
+            numerator = int((frac.denominator * self.numerator) +
+                            (self.denominator * frac.numerator))
+            denominator = (self.denominator * frac.denominator)
+            return Fraction(numerator, denominator)
+        else:
+            if (self.special_value == inf or frac.special_value == inf) \
+                    and self.sign * frac.sign == -1:
+                return Fraction(0, 0)
+            elif self.special_value == inf or frac.special_value == inf:
+                return Fraction(1, 0)
+            else:
+                return Fraction(-1, 0)
+
 
     def __mul__(self, frac):
         """
@@ -54,13 +67,13 @@ class Fraction:
 
     def __str__(self):
         if self.denominator == 1:
-            return str(int(self.numerator/self.denominator))
+            return str(self.numerator)
         return f'{self.numerator}/{self.denominator}'
 
     def __sub__(self, frac):
         # __sub__ for f-g
-        numerator = int((frac.denominator * self.numerator) - \
-                    (self.denominator * frac.numerator))
+        numerator = int((frac.denominator * self.numerator) -
+                        (self.denominator * frac.numerator))
         denominator = (self.denominator * frac.denominator)
         return Fraction(numerator, denominator)
 
@@ -68,7 +81,7 @@ class Fraction:
         # __gt__  for f > g
         pass
 
-    def __neq__(self, frac):
+    def __neg__(self, frac):
         # __neg__ for -f (negation)
         pass
 
