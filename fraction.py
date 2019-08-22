@@ -21,7 +21,15 @@ class Fraction:
                              / copysign(1,denominator))
         self.denominator = int((denominator/greatest_common_div)
                                / copysign(1,denominator))
-        self.sign = copysign(1,copysign(1,numerator))
+        self.sign = copysign(1, copysign(1, numerator))
+        self.undefined_as_number_type = None
+        if self.denominator == 0:
+            if self.numerator == 0:
+                # The reason why I decide to defined nan(Not A Number)
+                # as 'nan' is that nan is not equal to nan.
+                self.undefined_as_number_type = 'nan'
+            else:
+                self.sign = inf*copysign(1, self.numerator)
 
 
     def __add__(self, frac):
@@ -48,7 +56,6 @@ class Fraction:
         if self.denominator == 1:
             return int(self.numerator/self.denominator)
         return f'{self.numerator}/{self.denominator}'
-
 
     def __sub__(self, frac):
         # __sub__ for f-g

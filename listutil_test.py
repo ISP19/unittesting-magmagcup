@@ -20,6 +20,7 @@ class UniqueTest(unittest.TestCase):
         """
         self.assertListEqual(['hi'], unique(['hi']))
         self.assertListEqual([5], unique([5]))
+        self.assertListEqual([True], unique([True]))
 
     def test_one_item_many_times(self):
         '''
@@ -39,8 +40,8 @@ class UniqueTest(unittest.TestCase):
         """
         lst = [1, 2, 2, 4, [1, 2, 3], 1, [1, 2, 2, 3], [1, 2, 3]]
         self.assertListEqual([1, 2, 4, [1, 2, 3], [1, 2, 2, 3]], unique(lst))
-        lst = [1, 2, {'fruit': 'Banana'}, 3, 4, 5, 6, 4, True, {'fruit': 'Banana'}, 3, True, 2, 1, False, {'fruit': 'Banana'}, 5, 6, 3, 4]
-        self.assertListEqual([1, 2, {'fruit': 'Banana'}, 3, 4, 5, 6, True], unique(lst))
+        lst = [1, 2, {'fruit': 'Banana'}, 3, 4, 5, 6, 4, {'fruit': 'Banana'}, 3, 2, 1, {'fruit': 'Banana'}, 5, 6, 3, 4]
+        self.assertListEqual([1, 2, {'fruit': 'Banana'}, 3, 4, 5, 6], unique(lst))
 
     def test_argument_not_a_list(self):
         """
@@ -59,8 +60,10 @@ class UniqueTest(unittest.TestCase):
         'Extreme case'
         :return:
         """
-        humongous_list = [num for num in range(0, 1000)]
-        self.assertEqual(humongous_list, unique(humongous_list))
+        large_list = [num for num in range(0, 1000)]
+        another_list = [num for num in range(0, 300)]
+        humongous_list = large_list + another_list
+        self.assertEqual(large_list, unique(humongous_list))
 
 
 if __name__ == '__main__':
