@@ -22,6 +22,13 @@ Test case for __init__,__string__,__add__,__mul__,__sub__,__gt__,__neq__,__eq__
 
 "An integer is a whole number that can be either greater than 0, called positive, or less than 0, called negative. Zero is neither positive nor negative."
 __Reference__: http://www.math.com/school/subject1/lessons/S1U1L10DP.html
+
+Abbreviations in test case/result: 
+
+__nan__: Not a number.
+
+__inf__: Infinity.
+
 ## Constructor(init)
 
 | Test case              |  Expected Result    |
@@ -104,6 +111,14 @@ __Reference__: http://www.math.com/school/subject1/lessons/S1U1L10DP.html
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
+|2 Positive(>0) Fraction with same numerator but different denominator| return True if the base fraction have lower denominator value than the second one|
+|2 Negative(<0) Fraction with same numerator but different denominator| return True if the base fraction have higher denominator value than the second one|
+|Positive fraction and Negative fraction| if the base fraction is positive fraction, return True
+|nan fraction, nan fraction| False|
+|inf fraction, inf fraction or negative inf fraction, negative inf fraction| False|
+|inf fraction, negative inf fraction| True|
+|negative inf fraction, inf fraction| False|
+|inf fraction,nan fraction| False|
 
 ## Negation Operator (*__neg__*)
 

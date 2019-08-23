@@ -119,6 +119,20 @@ class FractionTest(unittest.TestCase):
         self.assertEqual(Fraction(0, 0), Fraction(0, 0) - Fraction(1, 0))
         self.assertEqual(Fraction(0, 0), Fraction(0, 0) - Fraction(0, 0))
 
+    def test_gt(self):
+        """
+        Test >(Greater than)
+        :return:
+        """
+        self.assertTrue(Fraction(1, 3) > Fraction(1, 10))
+        self.assertTrue(Fraction(-1, 10) > Fraction(-1, 3))
+        self.assertTrue(Fraction(9, 17) > Fraction(-1, 8))
+        self.assertFalse(Fraction(-10, 12) > Fraction(1, 1))
+        self.assertFalse(Fraction(0, 0) > Fraction(0, 0))
+        self.assertFalse(Fraction(1, 0) > Fraction(1, 0))
+        self.assertTrue(Fraction(1, 0) > Fraction(-1, 0))
+        self.assertFalse(Fraction(1, 0) > Fraction(0, 0))
+
     def test_neg(self):
         """
         Test -(Negation operator)

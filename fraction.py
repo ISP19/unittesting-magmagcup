@@ -89,8 +89,19 @@ class Fraction:
 
     def __gt__(self, frac):
         # __gt__  for f > g
+        if self.special_value is None and frac.special_value is None:
+            return (self.numerator/self.denominator) > (frac.numerator/frac.denominator)
+        else:
+            if self.special_value == frac.special_value:
+                return False
+            elif self.special_value == inf or frac.special_value == inf:
+                if self.special_value is None or self.special_value == -inf or self.special_value == 'nan' or frac.special_value == 'nan':
+                    return False
+                else:
+                    return True
+            else:
+                return False
 
-        return True
 
     def __neg__(self):
         # __neg__ for -f (negation)
