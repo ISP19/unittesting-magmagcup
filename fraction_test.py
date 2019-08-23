@@ -59,31 +59,81 @@ class FractionTest(unittest.TestCase):
         self.assertEqual("1/0", f.__str__())
         f = Fraction(-1, 0)
         self.assertEqual("-1/0", f.__str__())
+        f = Fraction(0, 5)
+        self.assertEqual("0",f.__str__())
 
     def test_multiply(self):
         """
-        Test *(multiply).
+        Test *(Multiply operator).
         :return:
         """
-        self.assertEqual(Fraction(6, -25), Fraction(3, 5)*Fraction(2, -5))
+        self.assertEqual(Fraction(6, -25), Fraction(3, 5) * Fraction(2, -5))
+        self.assertEqual(Fraction(2, 36), Fraction(1, 12) * Fraction(2, 3))
+        self.assertEqual(Fraction(-2, 9), Fraction(2, 3) * Fraction(-1, 3))
+        self.assertEqual(Fraction(-2, 9), Fraction(-2, 3) * Fraction(1, 3))
+        self.assertEqual(Fraction(-1, 1), Fraction(1, 1) * Fraction(-1, 1))
+        self.assertEqual(Fraction(1, 0), Fraction(1, 0) * Fraction(4, 3))
+        self.assertEqual(Fraction(-1, 0), Fraction(-1, 0) * Fraction(4, 3))
+        self.assertEqual(Fraction(-1, 9), Fraction(3, 9) * Fraction(-3, 9))
+        self.assertEqual(Fraction(-1, 0), Fraction(1, 0) * Fraction(-1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) * Fraction(-1, 3))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) * Fraction(1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) * Fraction(0, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0) * Fraction(1, 0))
+        self.assertEqual(Fraction(0), Fraction(0) * Fraction(999, 9999))
 
     def test_add(self):
         """
-        Test +(add).
+        Test +(addition operator).
         :return:
         """
         # 3/4 = 2/3 + 1/12
         self.assertEqual(Fraction(3, 4), Fraction(1, 12) + Fraction(2, 3))
         self.assertEqual(Fraction(1, 3), Fraction(2, 3) + Fraction(-1, 3))
+        self.assertEqual(Fraction(-1, 3), Fraction(-2, 3) + Fraction(1, 3))
         self.assertEqual(Fraction(0, 1), Fraction(1, 1) + Fraction(-1, 1))
         self.assertEqual(Fraction(1, 0), Fraction(1, 0) + Fraction(4, 3))
         self.assertEqual(Fraction(-1, 0), Fraction(-1, 0) + Fraction(4, 3))
-        self.assertEqual(Fraction(0, 9), Fraction(3, 9) + Fraction(-3, 9))
+        self.assertEqual(Fraction(0, 1), Fraction(3, 9) + Fraction(-3, 9))
         self.assertEqual(Fraction(0, 0), Fraction(1, 0) + Fraction(-1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) + Fraction(-1, 3))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) + Fraction(1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) + Fraction(0, 0))
+
+    def test_sub(self):
+        """
+        Test -(subtraction operator).
+        :return:
+        """
+        # 1/12 - 8/12 = -7/12
+        self.assertEqual(Fraction(-7, 12), Fraction(1, 12) - Fraction(2, 3))
+        self.assertEqual(Fraction(1, 1), Fraction(2, 3) - Fraction(-1, 3))
+        self.assertEqual(Fraction(-1, 1), Fraction(-2, 3) - Fraction(1, 3))
+        self.assertEqual(Fraction(2, 1), Fraction(1, 1) - Fraction(-1, 1))
+        self.assertEqual(Fraction(1, 0), Fraction(1, 0) - Fraction(4, 3))
+        self.assertEqual(Fraction(-1, 0), Fraction(-1, 0) - Fraction(4, 3))
+        self.assertEqual(Fraction(2, 3), Fraction(3, 9) - Fraction(-3, 9))
+        self.assertEqual(Fraction(1, 0), Fraction(1, 0) - Fraction(-1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(1, 0) - Fraction(1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) - Fraction(-1, 3))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) - Fraction(1, 0))
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0) - Fraction(0, 0))
+
+    def test_neg(self):
+        """
+        Test -(Negation operator)
+        :return:
+        """
+        self.assertEqual(Fraction(2, 5), Fraction(-2, 5).__neg__())
+        self.assertEqual(Fraction(7, 5), Fraction(-14, 10).__neg__())
+        self.assertEqual(Fraction(-1, 0), Fraction(3, 0).__neg__())
+        self.assertEqual(Fraction(5, 0), Fraction(-1, 0).__neg__())
+        self.assertEqual(Fraction(0, 0), Fraction(0, 0).__neg__())
+        self.assertEqual(Fraction(0), Fraction(0).__neg__())
 
     def test_eq(self):
         """
-        Test ==(equal).
+        Test ==(Equality operator).
         :return:
         """
         f = Fraction(1, 2)

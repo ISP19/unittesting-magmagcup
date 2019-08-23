@@ -20,51 +20,85 @@ by Sirawich Direkwattanachai.
 
 Test case for __init__,__string__,__add__,__mul__,__sub__,__gt__,__neq__,__eq__
 
+"An integer is a whole number that can be either greater than 0, called positive, or less than 0, called negative. Zero is neither positive nor negative."
+__Reference__: http://www.math.com/school/subject1/lessons/S1U1L10DP.html
 ## Constructor(init)
 
 | Test case              |  Expected Result    |
 |------------------------|---------------------|
-| Positive int(> 0) as nominator |nominator = int,denominator = 1,spacial value = None             |
-| Positive int(> 0) as nominator, Positive int(> 0) as denominator  |nominator = int,denominator = int,spacial value = None|
-| Negative int(< 0) as nominator, Positive int(> 0) as denominator  |nominator = -int,denominator = int,spacial value = None|
-| Positive int(> 0) as nominator, Negative int(< 0) as denominator  |nominator = -int,denominator = int,spacial value = None|
-| Negative int(< 0) as nominator, Negative int(< 0) as denominator  |nominator = int,denominator = int,spacial value = None|
+| Positive int(> 0) as numerator |numerator = int,denominator = 1,spacial value = None             |
+| Positive int(> 0) as numerator, Positive int(> 0) as denominator  |numerator = int,denominator = int,spacial value = None|
+| Negative int(< 0) as numerator, Positive int(> 0) as denominator  |numerator = -int,denominator = int,spacial value = None|
+| Positive int(> 0) as numerator, Negative int(< 0) as denominator  |numerator = -int,denominator = int,spacial value = None|
+| Negative int(< 0) as numerator, Negative int(< 0) as denominator  |numerator = int,denominator = int,spacial value = None|
 |Only input a denominator |  TypeError |
 |Wrong argument type  |  TypeError |
-|0 as denominator (positive nominator) | nominator = 1, denominator = 0,special value = inf|
-|0 as denominator (negative nominator) | nominator = -1, denominator = 0,special value = -inf|
-|0 as nominator  | nominator = 0, denominator = 1,special value = None|
-|0 as nominator and denominator | nominator = 0, denominator = 0, special value = 'nan'
-|Positive int as nominator, Negative 0 | nominator = 1, denominator = 0, special value = inf 
-|Positive int as nominator, Positive 0 | nominator = 1, denominator = 0, special value = inf 
+|0 as denominator (positive numerator) | numerator = 1, denominator = 0,special value = inf|
+|0 as denominator (negative numerator) | numerator = -1, denominator = 0,special value = -inf|
+|0 as numerator  | numerator = 0, denominator = 1,special value = None|
+|0 as numerator and denominator | numerator = 0, denominator = 0, special value = 'nan'
+|Positive int as numerator, Negative 0 | numerator = 1, denominator = 0, special value = inf 
+|Positive int as numerator, Positive 0 | numerator = 1, denominator = 0, special value = inf 
 
 ## Basetext (*__str__*)
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
-|Fraction with nominator > 0 (Denominator > 0)|nominator/denominator
-|Fraction with nominator > 0  (Denominator = 1)| nominator
-|Fraction with nominator < 0  (Denominator > 0)   | minus nominator/denominator                |
-|Fraction with nominator < 0  (Denominator = 1 )  |minus nominator|
-|Fraction with nominator < 0 (Denominator = 0) | -1/0
-|Fraction with nominator > 0 (Denominator = 0) | 1/0
-|Nominator and Denominator = 0 | 0/0
-|Nominator = 0 and Denominator != 0| 0
+|Fraction with numerator > 0 (Denominator > 0)|numerator/denominator
+|Fraction with numerator > 0  (Denominator = 1)| numerator
+|Fraction with numerator < 0  (Denominator > 0)   |negative numerator/denominator                |
+|Fraction with numerator < 0  (Denominator = 1 )  |negative numerator|
+|Fraction with numerator < 0 (Denominator = 0) | -1/0
+|Fraction with numerator > 0 (Denominator = 0) | 1/0
+|Numerator = 0 (Denominator >0 or <0)| 0
+|Numerator and Denominator = 0 | 0/0
+|Numerator = 0 and Denominator != 0| 0
 
 ## Addition Operator(*__add__*)
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
+|Positive fraction(>0) + Positive fraction(>0) | Positive fraction     |
+|Positive fraction(>0) + Negative fraction(<0) | Positive/Negative fraction (depend on the value of a negative fraction)|                   |
+|Negative fraction(<0) + Negative fraction(<0) | Negative fraction
+|Inf fraction + inf fraction or fraction + inf fraction | inf fraction|
+|Inf fraction + Negative inf fraction | nan fraction|
+|Negative inf fraction + Negative inf fraction or fraction + negative inf fraction| Negative inf fraction
+|nan fraction + inf fraction or nan fraction + negative inf fraction | nan fraction|
+|nan fraction + Positive fraction or nan fraction + negative fraction| nan fraction
+|nan fraction + nan fraction | nan fraction
 
 ## Multiplication Operator(*__mul__*)
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
+|Positive fraction(>0) * Positive fraction(>0) | Positive fraction     |
+|Positive fraction(>0) * Negative fraction(<0) | Negative fraction   |                   |
+|Negative fraction(<0) * Negative fraction(<0) | Positive fraction
+|Inf fraction * inf fraction or fraction * inf fraction | inf fraction|
+|Inf fraction * Negative inf fraction |Negative inf fraction|
+|Negative inf fraction * Negative inf fraction or negative fraction * negative inf fraction| Negative inf fraction
+|nan fraction * inf fraction or nan fraction * negative inf fraction | nan fraction|
+|nan fraction * Positive fraction or nan fraction * negative fraction| nan fraction
+|nan fraction * nan fraction | nan fraction
+|Fraction (=0) * inf/negative inf fraction | nan fraction
+|Fraction (=0) * positive/negative fraction | Fraction(0)
 
 ## Subtraction Operator(*__sub__*)
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
+|Positive fraction(>0) - Positive fraction(>0) | Positive/Negative fraction (depend on the value of a negative fraction) |
+|Positive fraction(>0) - Negative fraction(<0) | Positive fraction   |                   |
+|Negative fraction(<0) - Negative fraction(<0) | Positive/Negative fraction (depend on the value of a negative fraction)||
+|Negative fraction(<0) - Positive fraction(>0) | Negative fraction
+|Inf fraction - inf fraction or Negative inf fraction - Negative inf fraction| nan fraction
+|Inf fraction - fraction or fraction - negative inf fraction| inf fraction|
+|Inf fraction - Negative inf fraction | Inf fraction|
+|fraction - positive inf fraction or Negative inf fraction - fraction| Negative inf fraction
+|nan fraction - inf fraction or nan fraction - negative inf fraction | nan fraction|
+|nan fraction - Positive fraction or nan fraction - negative fraction| nan fraction
+|nan fraction - nan fraction | nan fraction
 
 ## Greater than (*__gt__*)
 
@@ -75,8 +109,23 @@ Test case for __init__,__string__,__add__,__mul__,__sub__,__gt__,__neq__,__eq__
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
+|Positive fraction| Negative fraction|
+|Negative fraction| Positive fraction|
+|inf fraction| Negative inf fraction|
+|negative inf fraction| inf fraction|
+|nan fraction| nan fraction|
+|Fraction (0)| Fraction (0)|
 
-## Equality (*__eq__*)
+## Equality Operator (*__eq__*)
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
+|Positive fraction(>0) * Positive fraction(>0) | Positive fraction     |
+|Positive fraction(>0) * Negative fraction(<0) | Negative fraction   |                   |
+|Negative fraction(<0) * Negative fraction(<0) | Positive fraction
+|Inf fraction * inf fraction or fraction * inf fraction | inf fraction|
+|Inf fraction * Negative inf fraction |Negative inf fraction|
+|Negative inf fraction * Negative inf fraction or negative fraction * negative inf fraction| Negative inf fraction
+|nan fraction * inf fraction or nan fraction * negative inf fraction | nan fraction|
+|nan fraction * Positive fraction or nan fraction * negative fraction| nan fraction
+|nan fraction * nan fraction | nan fraction

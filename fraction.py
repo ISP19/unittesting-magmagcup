@@ -45,8 +45,10 @@ class Fraction:
             denominator = (self.denominator * frac.denominator)
             return Fraction(numerator, denominator)
         else:
-            if (self.special_value == inf or frac.special_value == inf) \
-                    and self.sign * frac.sign == -1:
+            if self.special_value == 'nan' or frac.special_value == 'nan':
+                return Fraction(0, 0)
+            elif (self.special_value == -inf and frac.special_value == inf) or \
+                    (self.special_value == inf and frac.special_value == -inf):
                 return Fraction(0, 0)
             elif self.special_value == inf or frac.special_value == inf:
                 return Fraction(1, 0)
@@ -61,9 +63,20 @@ class Fraction:
         :return: a new fraction which is the product
         of 2 fraction
         """
-        numerator = self.numerator * frac.numerator
-        denominator = self.denominator * frac.denominator
-        return Fraction(numerator,denominator)
+        if self.special_value is None and frac.special_value is None:
+            numerator = self.numerator * frac.numerator
+            denominator = self.denominator * frac.denominator
+            return Fraction(numerator, denominator)
+        else:
+            if self.special_value is 'nan' or frac.special_value is 'nan':
+                return Fraction(0, 0)
+            elif self.numerator == 0 or frac.numerator == 0:
+                # 0 * inf = nan
+                return Fraction(0, 0)
+            elif self.sign * frac.sign == -1:
+                return Fraction(-1, 0)
+            else:
+                return Fraction(1, 0)
 
     def __str__(self):
         if self.denominator == 1:
@@ -72,18 +85,15 @@ class Fraction:
 
     def __sub__(self, frac):
         # __sub__ for f-g
-        numerator = int((frac.denominator * self.numerator) -
-                        (self.denominator * frac.numerator))
-        denominator = (self.denominator * frac.denominator)
-        return Fraction(numerator, denominator)
+        return self.__add__(frac.__neg__())
 
     def __gt__(self, frac):
         # __gt__  for f > g
         pass
 
-    def __neg__(self, frac):
+    def __neg__(self):
         # __neg__ for -f (negation)
-        pass
+        return Fraction(-self.numerator, self.denominator)
 
     def __eq__(self, frac):
         """Two fractions are equal if they have the same value.
