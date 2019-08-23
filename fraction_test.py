@@ -144,9 +144,14 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(f == h)
         self.assertFalse(f.__eq__(h))
         # Consider special values like 0, 1/0, -1/0
-        self.assertFalse(Fraction(1, 0).__eq__(Fraction(-1, 0)))
+        self.assertFalse(Fraction(-2, 3).__eq__(Fraction(2, 3)))
+        self.assertFalse(Fraction(1, 3).__eq__(Fraction(4, 2)))
+        self.assertFalse(Fraction(1, -3).__eq__(Fraction(-4, 7)))
+        self.assertFalse(Fraction(2, 3) == (Fraction(2, 5)))
+        self.assertFalse(Fraction(3, 5) == (Fraction(2, 5)))
         self.assertTrue(Fraction(0).__eq__(Fraction(0, 3)))
-        self.assertTrue(Fraction(0, 0).__eq__(Fraction(0, 0)))
+        self.assertTrue(Fraction(1, 0).__eq__(Fraction(6, 0)))
+        self.assertFalse(Fraction(1, 0).__eq__(Fraction(-1, 0)))
 
 
 if __name__ == '__main__':

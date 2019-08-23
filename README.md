@@ -120,12 +120,12 @@ __Reference__: http://www.math.com/school/subject1/lessons/S1U1L10DP.html
 
 | Test case              |   Expected Result    |
 |------------------------|----------------------|
-|Positive fraction(>0) * Positive fraction(>0) | Positive fraction     |
-|Positive fraction(>0) * Negative fraction(<0) | Negative fraction   |                   |
-|Negative fraction(<0) * Negative fraction(<0) | Positive fraction
-|Inf fraction * inf fraction or fraction * inf fraction | inf fraction|
-|Inf fraction * Negative inf fraction |Negative inf fraction|
-|Negative inf fraction * Negative inf fraction or negative fraction * negative inf fraction| Negative inf fraction
-|nan fraction * inf fraction or nan fraction * negative inf fraction | nan fraction|
-|nan fraction * Positive fraction or nan fraction * negative fraction| nan fraction
-|nan fraction * nan fraction | nan fraction
+| Positive fraction,Same positive fraction without gcd division| True
+| Positive fraction, Same fraction with negative sign | False
+| Positive fraction, Another positive fraction without any resemblance to the first fraction| False|
+| Negative fraction, Another negative fraction without any resemblance to the first fraction | False|
+| Two fraction with the same numerator | False|
+| Two fraction with the same denominator | False|
+|Positive inf fraction, Positive inf fraction with numerator > 1 |True
+| Fraction (0) , Fraction with numerator = 0,denominator != 0| True |
+|Negative inf  fraction, Positive inf fraction | True|

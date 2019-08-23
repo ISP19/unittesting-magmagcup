@@ -25,7 +25,7 @@ def unique(list):
     # return set_to_tuple
 
     if not isinstance(list, type([])):
-        raise TypeError
+        raise TypeError('Input argument type must be list.')
     list_with_out_duplicate = []
     for item in list:
         if item not in list_with_out_duplicate:

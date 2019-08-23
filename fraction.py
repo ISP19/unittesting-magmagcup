@@ -15,8 +15,8 @@ class Fraction:
         """Initialize a new fraction with the given numerator
            and denominator (default 1).
         """
-        if not isinstance(numerator,int) and not isinstance(denominator,int):
-            raise TypeError
+        if not isinstance(numerator, int) and not isinstance(denominator,int):
+            raise TypeError('Input argument type must be integer.')
         greatest_common_div = gcd(numerator,denominator)
         if greatest_common_div == 0:
             greatest_common_div = 1
@@ -89,7 +89,8 @@ class Fraction:
 
     def __gt__(self, frac):
         # __gt__  for f > g
-        pass
+
+        return True
 
     def __neg__(self):
         # __neg__ for -f (negation)
@@ -100,4 +101,5 @@ class Fraction:
            Fractions are stored in proper form so the internal representation
            is unique (3/6 is same as 1/2).
         """
+        # nan != nan according to python math library
         return self.numerator == frac.numerator and self.denominator == frac.denominator
