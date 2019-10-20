@@ -2,7 +2,7 @@
 
 by Sirawich Direkwattanachai.
 
->>> [![Build Status](https://api.travis-ci.com/magmagcup/unittesting-magmagcup.svg?branch=master)](https://travis-ci.com/magmagcup/unittesting-magmagcup)
+>>> [![Build Status](https://api.travis-ci.com/magmagcup/unittesting-magmagcup.svg?branch=master)](https://travis-ci.com/magmagcup/unittesting-magmagcup) [![codecov](https://codecov.io/gh/magmagcup/unittesting-magmagcup/branch/master/graph/badge.svg)](https://codecov.io/gh/magmagcup/unittesting-magmagcup)
 
 
 ## Test Cases for unique
