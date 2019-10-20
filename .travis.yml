@@ -1,7 +1,10 @@
  language: python
 
+ git:
+   depth: 1
+
 install:
-   -pip install codecov
+   - pip install codecov
 
  python: "3.6"
 
