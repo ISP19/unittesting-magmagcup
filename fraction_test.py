@@ -132,6 +132,7 @@ class FractionTest(unittest.TestCase):
         self.assertFalse(Fraction(1, 0) > Fraction(1, 0))
         self.assertTrue(Fraction(1, 0) > Fraction(-1, 0))
         self.assertFalse(Fraction(1, 0) > Fraction(0, 0))
+        self.assertFalse(Fraction(0, 0) > Fraction(-1, 0))
 
     def test_neg(self):
         """
